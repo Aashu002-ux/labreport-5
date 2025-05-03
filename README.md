@@ -15,7 +15,7 @@ To apply Genetic Algorithms to find valid solutions to the N-Queens problem by s
 ## How It Works
 
 - **Chromosome Representation:** Each chromosome is a list of N integers, where each value represents the row position of a queen in its respective column.
-- **Fitness Function:** Counts the number of non-attacking queen pairs. The maximum possible fitness is `N*(N-1)/2`.
+- **Fitness Function:** Counts the number of non-attacking queen pairs. The maximum possible fitness is N*(N-1)/2.
 - **Selection:** Tournament selection is used to choose parents based on fitness.
 - **Crossover:** A single-point crossover combines two parents to create an offspring.
 - **Mutation:** With a small probability, a random queen's position is changed.
