@@ -1,0 +1,75 @@
+import random
+
+
+N = 8  
+POP_SIZE = 100
+MUTATION_RATE = 0.03
+MAX_GENERATIONS = 10
+
+
+def random_chromosome():
+    return [random.randint(0, N - 1) for _ in range(N)]
+
+
+def fitness(chromosome):
+    non_attacking = 0
+    for i in range(N):
+        for j in range(i + 1, N):
+            if chromosome[i] != chromosome[j] and abs(chromosome[i] - chromosome[j]) != abs(i - j):
+                non_attacking += 1
+    return non_attacking
+
+
+def selection(population):
+    k = 3  
+    selected = random.sample(population, k)
+    return max(selected, key=fitness)
+
+def crossover(parent1, parent2):
+    point = random.randint(1, N - 2)
+    return parent1[:point] + parent2[point:]
+
+
+def mutate(chromosome):
+    if random.random() < MUTATION_RATE:
+        idx = random.randint(0, N - 1)
+        chromosome[idx] = random.randint(0, N - 1)
+    return chromosome
+
+
+def genetic_algorithm():
+    population = [random_chromosome() for _ in range(POP_SIZE)]
+    best = max(population, key=fitness)
+    generation = 0
+
+    while fitness(best) < (N * (N - 1)) // 2 and generation < MAX_GENERATIONS:
+        new_population = []
+        for _ in range(POP_SIZE):
+            p1 = selection(population)
+            p2 = selection(population)
+            child = crossover(p1, p2)
+            child = mutate(child)
+            new_population.append(child)
+
+        population = new_population
+        best = max(population, key=fitness)
+        generation += 1
+        print(f"Generation {generation}, Best fitness: {fitness(best)}")
+
+    print("\nSolution Found:")
+    print(f"Chromosome: {best}")
+    print_board(best)
+
+
+def print_board(chromosome):
+    for row in range(N):
+        line = ""
+        for col in range(N):
+            if chromosome[col] == row:
+                line += "Q "
+            else:
+                line += ". "
+        print(line)
+
+if __name__ == "__main__":
+    genetic_algorithm()
