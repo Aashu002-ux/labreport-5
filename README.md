@@ -1,8 +1,8 @@
 # labreport-5
 
-# 🧬 N-Queens Problem Solver using Genetic Algorithms
+#  N-Queens Problem Solver using Genetic Algorithms
 
-This project provides a Python implementation of the **N-Queens problem** solved using a **Genetic Algorithm (GA)**. The goal is to place `N` queens on an `N × N` chessboard such that no two queens threaten each other.
+This project provides a Python implementation of the **N-Queens problem** solved using a **Genetic Algorithm (GA)**. The goal is to place N queens on an N × N chessboard such that no two queens threaten each other.
 
 
 
